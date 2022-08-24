@@ -1,0 +1,7 @@
+Article
+    - id 
+    - title
+    - slug
+    - post_image ... 
+    - body
+    - author (fk - User model)

@@ -1,0 +1,212 @@
+forms in Django
+========================
+- vanilla forms
+
+
+
+
+check the use of "offset-md-2" in a class
+to grab a form
+
+
+to create a form in Django
+1. create a file named form.py in the blog
+from Django import forms
+from .models import Article--- this is the model yu want to work with
+
+create a form model
+
+the model= model you want to work with
+
+go to views.py import the form
+then create an instance of the form
+def createpost(request):
+postform
+
+There are two forms you create
+1. is to render the form
+2. to grab and post the data collected
+
+once you do a post operation, always redirect, else the post will be done many times
+
+go to the Article model, remove null= true, run migrations
+
+
+To ensure the form grabs the imafge and files
+1.add in the form.py
+enctype="multipart/form-data---- this is to ensure your form uploads form data such as the imag, excel form e.t.c
+
+2.then in the views :
+add request.FILES after the request.POST
+
+
+to ensure some users do not access come views, go the the views then 
+import django.utills.text import slugify
+
+
+def save(self,*args,**kwargs):
+	self.slug = slugify(self.title)
+super(article,self).save(*args,**kwargs)
+
+
+SECURITY
+1.	LOGIN
+2. LOG OUT
+3. CHANGE PASSWORD- 
+4. RESET PASSWORD
+
+
+templates- create the template Registration for it(Login, register, change password, reset pawwrd) and put them in a file called Registration
+
+
+urls-djange.contrib.urls
+
+shortcode to generate email field- memail
+
+
+go to the urls of the core, then add path('accounts/',include(django.contrib.auth.urls')) this grabs all the urls needed for the security
+
+
+
+
+register on aws
+1.login
+2.enter EC2 on the search bar-- this means elastic cloud compute
+3.region-London
+4launch an instance
+5. in the form: name the sever, say Ffloebuks
+select ubuntu as operating system
+select instance type-- t2micro
+key pair-SSH- secured shell, it works on public and private key
+give the key a new key, say floebuks-20220820(YY/MM/DD)
+RSA type
+.pem format
+create key
+then keep it secured on the users folder subdirectory on the machine- the user you used to login
+set up the security group
+then launch instance
+view all instances
+SSH into it- log into it
+
+(checkout-shobiexplains-- search for django deploys-part1) watch the video on youtube
+
+go to the GITbash prompt
+a. cd ..
+b. cd into the folder, cd floebuks
+c. ls
+d. chmod 400 floebuks-20220820.pem---- this turns the file to a read only
+3. go on the server, select it and click connect
+
+4. select the SSH and connect since you have the pem file, in the case of a loss of the pem file, click on EC2 instance connect and connect
+
+copy the command, then paste it in the gitbash prompt
+type yes
+
+
+
+press the ok using the tab
+
+check the python version in place--- python3 --versions
+mkdir myapps( to keep all the folder)
+install virtual env
+ run sudo apt install 
+cd into the myapps 
+type python3 -m venv env------#in linux you add version to the python name, say python3
+type source env/bin/activate--- #space after source
+
+pip install gunicorn-- while the virtula env is active
+
+
+initialize git
+cd into the project and do git init
+ to create gitignore
+right click and create new file .gitignore
+ go online angd google  and do gitignore on toptal
+ type django
+select all and paste on the gitignore file, the add any other additional from you
+
+then do git add.
+then git commit -m "current state at 20220820"  the value in quote is the name
+
+push to github
+================
+then go to the github page
+
+login
+ create a new repo
+copy the code on push  and paste on the git command prompt
+then go back to the github and refresh
+then go to code and copy---# this is to clone
+go back to the ubuntu server
+type git clone and then paste the url you copied   #while the ubuntu server is still running
+next type user name 
+then password
+pip install -r requirements .txt
+cat is a requiremet.txt--- this will tell you the requiremets to be installed
+ pip install django== 4.0.5 pillow == 9.2.0  psycopg2-binary
+(incase you want to chenge the password on github to token
+
+
+add  port 8000 to the security gropu on aws check the app, move down to the security group and chek the name, then go down to the newtworka nd securityy, then 
+select the name seen, say lauchh 5
+ then select the inbound rule-- what goes into the server
+ 
+go to the virtula env
+cd into the the project-- burgerking
+
+then run the code 
+
+go to the project settings. py
+DEBUG = True
+add ALLOWED_HOSTS = ['*']-- this means allow all
+back to the git prompt
+do git add.
+git commit -m "setting. py modified"
+go bak to the git hub and check the repository to see if the changes has been made
+
+go to the ubuntu server
+
+to shot down a server- ctrl c on ubuntu
+
+1. to to settings
+go to developre setting
+click on the personal  generate token)
+
+
+(brad traversy/deploy/ django)-- how to deploy
+
+
+1. install python3- pip ........
+
+postgres is not to be installed in the env-  database
+
+after the installaation, enter into the db (postgres)
+sudo - postgres psql
+
+create datbse with the db name burgermandb
+create user burgeradmin
+give access to the user-- grant all priviledges  on database burgermandb to bugeradmin 
+
+
+copy local_settings.py on  brad traversy/deploy then paste on settings.py file
+
+then on git hub do git add and git commit or do git commit -am "message"
+then do git push
+
+
+then you leave the enviroment: \q
+
+create new file:
+sudo nano file name
+sudo nano local_setttings.py
+then put the db settings from the settings.py into it
+then change the user name and password to the one created
+
+ to check it, cat file name
+
+
+cd out 
+cd.. to apps folder
+then source env\bin\activate
+ cd into the burger
+shoby explains on you
